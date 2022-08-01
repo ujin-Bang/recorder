@@ -20,7 +20,7 @@
         android:id="@+id/recordTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0909"
+        android:text="09:09"
         android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="@id/recordButton"
         app:layout_constraintEnd_toEndOf="@id/recordButton"
