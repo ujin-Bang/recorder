@@ -98,6 +98,8 @@ class MainActivity : AppCompatActivity() {
         //리셋버튼 클릭시
         resetButton.setOnClickListener {
             stopPlaying() //재생을 멈추고
+            soundVisualizerView.clearVisualization()
+            recordTimeTextView.clearCountTime()
             state = State.BEFORE_RECORDING // 녹음전 상태로 되돌리기
 
         }
@@ -161,6 +163,10 @@ class MainActivity : AppCompatActivity() {
         player = MediaPlayer().apply {
             setDataSource(recordingFilePath)
             prepare()
+        }
+        player?.setOnCompletionListener {
+            stopPlaying()
+            state = State.AFTER_RECORDING
         }
         player?.start()
         soundVisualizerView.startVisualizing(true)

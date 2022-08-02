@@ -11,6 +11,10 @@ class RecordButton(
     attrs: AttributeSet
 ): AppCompatImageButton(context, attrs) {
 
+    init {
+        setBackgroundResource(R.drawable.shape_oval_button)
+    }
+
     fun updateIconWithState(state: State){ //enum class로 만든 State 인자로 받기
         when(state) {
             State.BEFORE_RECORDING -> { //녹음전 상태일 때 보여질 이미지
