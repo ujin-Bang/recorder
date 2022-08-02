@@ -6,26 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.restart.recorder.SoundVisualizerView
+        android:id="@+id/soundVisualizerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/recordTimeTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/resetButton"
-        android:text="RESET"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/recordButton"
-        app:layout_constraintTop_toTopOf="@id/recordButton"
-        app:layout_constraintBottom_toBottomOf="@id/recordButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="RESET"
+        app:layout_constraintBottom_toBottomOf="@id/recordButton"
+        app:layout_constraintEnd_toStartOf="@id/recordButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/recordButton"
         tools:ignore="HardcodedText" />
 
-    <TextView
+    <com.restart.recorder.CountUpView
         android:id="@+id/recordTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="09:09"
         android:layout_marginBottom="20dp"
-        app:layout_constraintStart_toStartOf="@id/recordButton"
-        app:layout_constraintEnd_toEndOf="@id/recordButton"
+        android:text="09:09"
         app:layout_constraintBottom_toTopOf="@id/recordButton"
+        app:layout_constraintEnd_toEndOf="@id/recordButton"
+        app:layout_constraintStart_toStartOf="@id/recordButton"
         tools:ignore="HardcodedText" />
 
     <com.restart.recorder.RecordButton

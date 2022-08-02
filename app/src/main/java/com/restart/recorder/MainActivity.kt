@@ -10,6 +10,14 @@ import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
+    private val soundVisualizerView: SoundVisualizerView by lazy {
+        findViewById(R.id.soundVisualizerView)
+    }
+
+    private val recordTimeTextView: CountUpView by lazy {
+        findViewById(R.id.recordTimeTextView)
+    }
+
     private val resetButton: Button by lazy {
         findViewById(R.id.resetButton)
     }
@@ -83,6 +91,10 @@ class MainActivity : AppCompatActivity() {
     //
     private fun bindViews(){
 
+        soundVisualizerView.onRequestCurrentAmplitude = {
+            recorder?.maxAmplitude ?:0
+        }
+
         //리셋버튼 클릭시
         resetButton.setOnClickListener {
             stopPlaying() //재생을 멈추고
@@ -126,6 +138,8 @@ class MainActivity : AppCompatActivity() {
             prepare() //준비
         }
         recorder?.start() //녹음시작
+        soundVisualizerView.startVisualizing(false)
+        recordTimeTextView.startCountUp()
         state = State.ON_RECORDING
     }
 
@@ -136,6 +150,8 @@ class MainActivity : AppCompatActivity() {
             release() //메모리 해제
         }
         recorder = null //레코더 널처리
+        soundVisualizerView.stopVisualizing()
+        recordTimeTextView.stopCountUp()
         state = State.AFTER_RECORDING
     }
 
@@ -147,6 +163,8 @@ class MainActivity : AppCompatActivity() {
             prepare()
         }
         player?.start()
+        soundVisualizerView.startVisualizing(true)
+        recordTimeTextView.startCountUp()
         state = State.ON_PLAYING
     }
 
@@ -154,6 +172,8 @@ class MainActivity : AppCompatActivity() {
     private fun stopPlaying() {
         player?.release()
         player = null
+        soundVisualizerView.stopVisualizing()
+        recordTimeTextView.stopCountUp()
         state = State.AFTER_RECORDING
     }
 
